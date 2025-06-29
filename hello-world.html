@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hello World - Marcus Weinberger</title>
+    <style>
+        :root {
+            --window-bg: #1a1a1a;
+            --tab-bg: #2d2d2d;
+            --tab-active: #333333;
+            --border-color: #444444;
+            --text-color: #ffffff;
+            --name-color: #e6e6fa;
+            --code-bg: #2d2d2d;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: #2b2b2b;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        .terminal-window {
+            width: 90%;
+            height: 80vh;
+            background-color: var(--window-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            overflow: hidden;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .tab-bar {
+            display: flex;
+            background-color: var(--tab-bg);
+            padding: 8px 8px 0 8px;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .tab {
+            padding: 8px 16px;
+            background-color: var(--tab-bg);
+            color: var(--text-color);
+            border-radius: 6px 6px 0 0;
+            border: 1px solid var(--border-color);
+            border-bottom: none;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-right: 4px;
+            text-decoration: none;
+        }
+
+        .tab.active {
+            background-color: var(--tab-active);
+        }
+
+        .terminal-content {
+            padding: 16px;
+            color: var(--text-color);
+            height: calc(100% - 45px);
+            overflow-y: auto;
+        }
+
+        .prompt {
+            display: flex;
+            gap: 8px;
+            align-items: center;
+            margin-bottom: 16px;
+        }
+
+        .prompt-symbol {
+            color: #0f0;
+        }
+
+        pre {
+            background-color: var(--code-bg);
+            padding: 16px;
+            border-radius: 4px;
+            overflow-x: auto;
+            margin: 16px 0;
+        }
+
+        code {
+            font-family: 'Consolas', monospace;
+        }
+
+        a {
+            color: #58a6ff;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        .typing {
+            border-right: 2px solid var(--text-color);
+            white-space: nowrap;
+            overflow: hidden;
+            width: 0;
+            animation: typing 1s steps(30, end) forwards;
+        }
+
+        @keyframes typing {
+            from { width: 0 }
+            to { width: 100% }
+        }
+    </style>
+</head>
+<body>
+    <div class="terminal-window">
+        <div class="tab-bar">
+            <a href="index.html" class="tab">
+                <span>🖥️</span>
+                <span>marcusj.org</span>
+            </a>
+            <a href="hello-world.html" class="tab active">
+                <span>📝</span>
+                <span>hello-world</span>
+            </a>
+            <a href="i-marcusj-org.html" class="tab">
+                <span>🖼️</span>
+                <span>i.marcusj.org</span>
+            </a>
+            <a href="repl-email.html" class="tab">
+                <span>📧</span>
+                <span>repl.email</span>
+            </a>
+        </div>
+        <div class="terminal-content">
+            <div class="command-group">
+                <div class="prompt">
+                    <span class="prompt-symbol">❯</span>
+                    <span class="typing">cat hello-world.md</span>
+                </div>
+                <div class="output hidden">
+                    <h1>Obfuscating <code>hello world</code></h1>
+
+                    <p><em>The most complicated <code>hello world</code> program in a single line.</em></p>
+
+                    <p>After reading <a href="https://benkurtovic.com/2014/06/01/obfuscating-hello-world.html">this article</a> about obfuscating the classic <strong><em>hello world</em></strong> program, I saw that the author ended up with the following python code:</p>
+
+                    <pre><code class="python">
+(lambda _, __, ___, ____, _____, ______, _______, ________:
+    getattr(
+        __import__(True.__class__.__name__[_] + [].__class__.__name__[__]),
+        ().__class__.__eq__.__class__.__name__[:__] +
+        ().__iter__().__class__.__name__[_____:________]
+    )(
+        _, (lambda _, __, ___: _(_, __, ___))(            
+            lambda _, __, ___:
+                chr(___ % __) + _(_, __, ___ // __) if ___ else
+                (lambda: _).func_code.co_lnotab,
+            _ << ________,
+            (((_____ << ____) + _) << ((___ << _____) - ___)) + (((((___ << __)
+            - _) << ___) + _) << ((_____ << ____) + (_ << _))) + (((_______ <<
+            __) - _) << (((((_ << ___) + _)) << ___) + (_ << _))) + (((_______
+            << ___) + _) << ((_ << ______) + _)) + (((_______ << ____) - _) <<
+            ((_______ << ___))) + (((_ << ____) - _) << ((((___ << __) + _) <<
+            __) - _)) - (_______ << ((((___ << __) - _) << __) + _)) + (_______
+            << (((((_ << ___) + _)) << __))) - ((((((_ << ___) + _)) << __) +
+            _) << ((((___ << __) + _) << _))) + (((_______ << __) - _) <<
+            (((((_ << ___) + _)) << _))) + (((___ << ___) + _) << ((_____ <<
+            _))) + (_____ << ______) + (_ << ___)
+        )
+    )
+)(
+    *(lambda _, __, ___: _(_, __, ___))(        
+        (lambda _, __, ___:
+            [__(___[(lambda: _).func_code.co_nlocals])] +
+            _(_, __, ___[(lambda _: _).func_code.co_nlocals:]) if ___ else []
+        ),
+        lambda _: _.func_code.co_argcount,
+        (
+            lambda _: _,
+            lambda _, __: _,
+            lambda _, __, ___: _,
+            lambda _, __, ___, ____: _,
+            lambda _, __, ___, ____, _____: _,
+            lambda _, __, ___, ____, _____, ______: _,
+            lambda _, __, ___, ____, _____, ______, _______: _,
+            lambda _, __, ___, ____, _____, ______, _______, ________: _
+        )
+    )
+)</code></pre>
+
+                    <h2>Here is my own take on the idea, written from scratch in python3, in only one line (no semicolons)</h2>
+
+                    <p>Check out the implementation on <a href="https://replit.com/@MarcusWeinberger/obf-hello-world-oneline?theme=replitDark">Replit</a></p>
+
+                    <pre><code class="python">
+(lambda i: [print(chr(x),end='') for x in (lambda i=i: [globals().update({"h":(lambda _=(i[-1]+i[2]): (_*_)+i[3])()}) or h,h - i[2],globals().update({"l":h + i[3]}) or l,l,globals().update({"o":l + i[2]}) or o,(i[-1] + i[0]) * 4,o + (i[3] * 2),o,o + i[2],l,h - i[3],i[4] * 2])()])([_.__code__.co_argcount for _ in ((lambda _: None),(lambda _, __: None),(lambda _, __, ___: None),(lambda _, __, ___, ____: None),(lambda _, __, ___, ____, _____: None),(lambda _, __, ___, ____, _____, ______: None),(lambda _, __, ___, ____, _____, ______, _______: None))])
+                    </code></pre>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const commandGroups = document.querySelectorAll('.command-group');
+            let currentGroup = 0;
+
+            function showNextCommand() {
+                if (currentGroup >= commandGroups.length) return;
+                
+                const group = commandGroups[currentGroup];
+                group.classList.remove('hidden');
+                
+                const typingElement = group.querySelector('.typing');
+                const output = group.querySelector('.output');
+
+                // Show output after typing animation
+                typingElement.addEventListener('animationend', () => {
+                    output.classList.remove('hidden');
+                    currentGroup++;
+                    setTimeout(showNextCommand, 500);
+                }, { once: true });
+            }
+
+            showNextCommand();
+        });
+    </script>
+</body>
+</html>

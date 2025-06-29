@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>i.marcusj.org - Image Hosting Service</title>
+    <style>
+        :root {
+            --window-bg: #1a1a1a;
+            --tab-bg: #2d2d2d;
+            --tab-active: #333333;
+            --border-color: #444444;
+            --text-color: #ffffff;
+            --name-color: #7211bc;
+            --code-bg: #2d2d2d;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: #2b2b2b;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        .terminal-window {
+            width: 90%;
+            height: 80vh;
+            background-color: var(--window-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            overflow: hidden;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .tab-bar {
+            display: flex;
+            background-color: var(--tab-bg);
+            padding: 8px 8px 0 8px;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .tab {
+            padding: 8px 16px;
+            background-color: var(--tab-bg);
+            color: var(--text-color);
+            border-radius: 6px 6px 0 0;
+            border: 1px solid var(--border-color);
+            border-bottom: none;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-right: 4px;
+            text-decoration: none;
+        }
+
+        .tab.active {
+            background-color: var(--tab-active);
+        }
+
+        .terminal-content {
+            padding: 16px;
+            color: var(--text-color);
+            height: calc(100% - 45px);
+            overflow-y: auto;
+        }
+
+        .prompt {
+            display: flex;
+            gap: 8px;
+            align-items: center;
+            margin-bottom: 16px;
+        }
+
+        .prompt-symbol {
+            color: #0f0;
+        }
+
+        pre {
+            background-color: var(--code-bg);
+            padding: 16px;
+            border-radius: 4px;
+            overflow-x: auto;
+            margin: 16px 0;
+        }
+
+        code {
+            font-family: 'Consolas', monospace;
+        }
+
+        a {
+            color: #58a6ff;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        .typing {
+            border-right: 2px solid var(--text-color);
+            white-space: nowrap;
+            overflow: hidden;
+            width: 0;
+            animation: typing 1s steps(30, end) forwards;
+        }
+
+        @keyframes typing {
+            from { width: 0 }
+            to { width: 100% }
+        }
+
+        img {
+            max-width: 100%;
+            border-radius: 4px;
+            margin: 16px 0;
+        }
+
+        ul {
+            margin-left: 20px;
+            margin-bottom: 16px;
+        }
+    </style>
+</head>
+<body>
+    <div class="terminal-window">
+        <div class="tab-bar">
+            <a href="index.html" class="tab">
+                <span>🖥️</span>
+                <span>marcusj.org</span>
+            </a>
+            <a href="hello-world.html" class="tab">
+                <span>📝</span>
+                <span>hello-world</span>
+            </a>
+            <a href="i-marcusj-org.html" class="tab active">
+                <span>🖼️</span>
+                <span>i.marcusj.org</span>
+            </a>
+            <a href="repl-email.html" class="tab">
+                <span>📧</span>
+                <span>repl.email</span>
+            </a>
+        </div>
+        <div class="terminal-content">
+            <div class="command-group">
+                <div class="prompt">
+                    <span class="prompt-symbol">❯</span>
+                    <span class="typing">cat project.md</span>
+                </div>
+                <div class="output hidden">
+                    <h1><a href="https://i.marcusj.org">i.marcusj.org</a> - a simple, anonymous, and free image hosting service</h1>
+
+                    <img src="static/i.marcusj.org/img.png" alt="i.marcusj.org interface">
+
+                    <p>This was one of my first projects to use Google Firebase. Images are stored in Google Firestore. Some of the key features include:</p>
+                    <ul>
+                        <li>image deletion</li>
+                        <li>images can be linked from external sources</li>
+                        <li>open API</li>
+                    </ul>
+
+                    <h2><a href="https://i.marcusj.org/api/docs">API docs</a></h2>
+
+                    <p><em>Alternatively, check out <a href="https://pypi.org/project/imj/">the python client libary - `imj`</a></em></p>
+
+                    <pre><code class="python">
+import imj
+
+res = imj.upload_file("Pictures\\widepeepohappy.png")
+print(
+    res.viewer, # viewer url
+    res.image, # image url
+    res.shorten(), # shortened url
+)
+
+# you can upload raw data with imj.upload(bytedata)
+</code></pre>
+                </div>
+            </div>
+
+            <div class="prompt">
+                <span class="prompt-symbol">❯</span>
+                <span class="waiting">_</span>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const commandGroups = document.querySelectorAll('.command-group');
+            let currentGroup = 0;
+
+            function showNextCommand() {
+                if (currentGroup >= commandGroups.length) return;
+                
+                const group = commandGroups[currentGroup];
+                group.classList.remove('hidden');
+                
+                const typingElement = group.querySelector('.typing');
+                const output = group.querySelector('.output');
+
+                // Show output after typing animation
+                typingElement.addEventListener('animationend', () => {
+                    output.classList.remove('hidden');
+                    currentGroup++;
+                    setTimeout(showNextCommand, 500);
+                }, { once: true });
+            }
+
+            showNextCommand();
+        });
+    </script>
+</body>
+</html>

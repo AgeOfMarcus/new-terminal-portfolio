@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>repl.email - marcusj.org</title>
+    <style>
+        :root {
+            --window-bg: #1a1a1a;
+            --tab-bg: #2d2d2d;
+            --tab-active: #333333;
+            --border-color: #444444;
+            --text-color: #ffffff;
+            --name-color: #7211bc;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: #2b2b2b;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        .terminal-window {
+            width: 90%;
+            height: 80vh;
+            background-color: var(--window-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            overflow: hidden;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .tab-bar {
+            display: flex;
+            background-color: var(--tab-bg);
+            padding: 8px 8px 0 8px;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .tab {
+            padding: 8px 16px;
+            background-color: var(--tab-bg);
+            color: var(--text-color);
+            border-radius: 6px 6px 0 0;
+            border: 1px solid var(--border-color);
+            border-bottom: none;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-right: 4px;
+            text-decoration: none;
+        }
+
+        .tab.active {
+            background-color: var(--tab-active);
+        }
+
+        .terminal-content {
+            padding: 16px;
+            color: var(--text-color);
+            height: calc(100% - 45px);
+            overflow-y: auto;
+        }
+
+        .prompt {
+            display: flex;
+            gap: 8px;
+            align-items: center;
+        }
+
+        .prompt-symbol {
+            color: #0f0;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        .typing {
+            border-right: 2px solid var(--text-color);
+            white-space: nowrap;
+            overflow: hidden;
+            width: 0;
+            animation: typing 1s steps(30, end) forwards;
+        }
+
+        .waiting {
+            animation: blink 1s step-end infinite;
+        }
+
+        @keyframes typing {
+            from { width: 0 }
+            to { width: 100% }
+        }
+
+        @keyframes blink {
+            from, to { border-color: transparent }
+            50% { border-color: var(--text-color); }
+        }
+
+        .output {
+            margin: 10px 0;
+            line-height: 1.5;
+        }
+
+        .output img {
+            max-width: 100%;
+            margin: 10px 0;
+            border-radius: 4px;
+            border: 1px solid var(--border-color);
+        }
+
+        .output a {
+            color: #58a6ff;
+            text-decoration: none;
+        }
+
+        .output a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="terminal-window">
+        <div class="tab-bar">
+            <a href="index.html" class="tab">
+                <span>🖥️</span>
+                <span>marcusj.org</span>
+            </a>
+            <a href="hello-world.html" class="tab">
+                <span>📝</span>
+                <span>hello-world</span>
+            </a>
+            <a href="i-marcusj-org.html" class="tab">
+                <span>🖼️</span>
+                <span>i.marcusj.org</span>
+            </a>
+            <a href="repl-email.html" class="tab active">
+                <span>📧</span>
+                <span>repl.email</span>
+            </a>
+        </div>
+        <div class="terminal-content">
+            <div class="command-group hidden">
+                <div class="prompt">
+                    <span class="prompt-symbol">❯</span>
+                    <span class="typing">cat project_info.txt</span>
+                </div>
+                <div class="output hidden">
+                    <h1><a href="https://repl.email">repl.email</a> - a fully fledged, free email service for replit users</h1>
+                    <p>Repl.email was great while it lasted, but sadly is no longer in service. Replit has changed a lot since this project was created, and this already was becoming too hard to maintain as it was.</p>
+                    <p><a href="https://notes.marcusj.org/link/repl.email">Check out the repl.email noticeboard here!</a></p>
+                    <img src="https://i.imgur.com/qIoIVJt.gif" alt="repl.email demo" style="display: block; max-width: 100%; margin: 20px 0;">
+                </div>
+            </div>
+
+            <div class="command-group hidden">
+                <div class="prompt">
+                    <span class="prompt-symbol">❯</span>
+                    <span class="typing">cat development_story.txt</span>
+                </div>
+                <div class="output hidden">
+                    <p>I <a href="https://notes.marcusj.org/link/blog#replemail">started work on repl.email</a> late 2020. My goal was to host my own email service - like gmail. However, in order to host this on <a href="https://repl.email/__repl">replit</a>, I had to think outside the box. Replit only allows you to open a single port for hosting a webserver, so I found two third-party services that I would use to make this work.</p>
+                    
+                    <h2>SendGrid</h2>
+                    <p>By taking advantage of their free API, I can link my account to the domain I own, and send emails out to anyone, anywhere. They also support additional features such as scheduled delivery up to 72 hours in advance, which I incorporated into repl.email.</p>
+
+                    <h2>ImprovMX</h2>
+                    <p>Yet another free service, improvmx lets me forward all emails sent to my domain (repl.email) to a set of mailboxes. For the mailbox I used gmail, and sorted emails into individual inboxes.</p>
+                </div>
+            </div>
+
+            <div class="command-group hidden">
+                <div class="prompt">
+                    <span class="prompt-symbol">❯</span>
+                    <span class="typing">cat features.txt</span>
+                </div>
+                <div class="output hidden">
+                    <h2>Features</h2>
+                    <ul>
+                        <li>live markdown editor</li>
+                        <li>save emails as drafts to continue editing later</li>
+                        <li>schedule email delivery up to 72 hours</li>
+                        <li>feature-wide api access</li>
+                        <li>login via QR code or replit</li>
+                        <li>attatch files</li>
+                        <li>flag emails as important/unread + pin emails</li>
+                        <li>read receipts</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="prompt">
+                <span class="prompt-symbol">❯</span>
+                <span class="waiting">_</span>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const commandGroups = document.querySelectorAll('.command-group');
+            let currentGroup = 0;
+
+            function showNextCommand() {
+                if (currentGroup >= commandGroups.length) return;
+                
+                const group = commandGroups[currentGroup];
+                group.classList.remove('hidden');
+                
+                const typingElement = group.querySelector('.typing');
+                const output = group.querySelector('.output');
+
+                typingElement.addEventListener('animationend', () => {
+                    output.classList.remove('hidden');
+                    currentGroup++;
+                    setTimeout(showNextCommand, 500);
+                }, { once: true });
+            }
+
+            showNextCommand();
+        });
+    </script>
+</body>
+</html>
