@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ts4j - Ticket Management Software</title>
+    <link rel="stylesheet" href="static/styles.css">
+</head>
+<body>
+    <div class="terminal-window">
+        <div class="tab-bar">
+            <a href="index.html" class="tab">
+                <span>🖥️</span>
+                <span>marcusj.org</span>
+            </a>
+            <a href="ticket-system.html" class="tab active">
+                <span>🎟️</span>
+                <span>ticket-system</span>
+            </a>
+            <a href="repl-email.html" class="tab">
+                <span>📧</span>
+                <span>repl.email</span>
+            </a>
+            <a href="i-marcusj-org.html" class="tab">
+                <span>🖼️</span>
+                <span>i.marcusj.org</span>
+            </a>
+            <a href="hello-world.html" class="tab">
+                <span>📝</span>
+                <span>hello-world</span>
+            </a>
+        </div>
+        <div class="terminal-content">
+            <div class="command-group">
+                <div class="prompt">
+                    <span class="prompt-symbol">❯</span>
+                    <span class="typing">cat writeup.md</span>
+                </div>
+                <div class="output hidden">
+                    <h1>Custom Ticket Management Software</h1>
+                    <p>ts4j is a custom ticket management software I developed for a small glass business. This was my first commercial project and despite having quite a small scope, I am very proud of the results.</p>
+
+                    <video controls style="max-width: 100%; display: block; margin: 20px 0;">
+                        <source src="static/ts4j-demo.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+
+                    <h2>Tech Stack</h2>
+                    <ul>
+                        <li>Frontend: HTML, CSS, JavaScript</li>
+                        <li>Backend: Python, Flask</li>
+                        <li>Database: SQLite</li>
+                    </ul>
+
+                    <h2>Features</h2>
+                    <ul>
+                        <li>Integrated Calendar</li>
+                        <ul>
+                            <li>View upcoming and past tickets and filter by status.</li>
+                            <li>Add, view, and edit upcoming and past events.</li>
+                        </ul>
+                        <li>Client/Ticket Management</li>
+                        <ul>
+                            <li>Create and managet clients.</li>
+                            <li>Manage tickets for each client.</li>
+                            <li>Track progress within individual tickets with checklists.</li>
+                            <li>Perform ticket actions such as generating invoices.</li>
+                        </ul>
+                        <li>Document Generation</li>
+                        <ul>
+                            <li>Generate invoices, quotes, and work orders from existing customer/ticket info.</li>
+                            <li>Export as Word document.</li>
+                        </ul>
+                        <li>Easy Access to Vendor Information</li>
+                        <ul>
+                            <li>Convenient database of vendors.</li>
+                            <li>Manage vendors and their contact information.</li>
+                            <li>Upload and manage vendor price sheets for future access.</li>
+                        </ul>
+                    </ul>
+
+                    <h2>Limitations and Future Improvements</h2>
+                    <p>This was a small project with a very small scope. I was approached by this business as they didn't have the budget for an expensive third-party solution and wanted a simple in-house software to manage their customer tickets and their vendors.</p>
+                    <p>This project was designed to be ran on a single, local machine. If I were to recommend this solution to someone, I would suggest the addition of user access manegement, roles, authentication, and I would offer a managed setup - where I would install and manage this software on a central machine, with individual employees connecting through a client program.</p>
+                    <p style="color: lavendar; font-weight: bold">If you are interested in a custom solution for your business, please reach out via <a href="https://linkedin.com/in/marcusweinberger">my LinkedIn</a>.</p>
+                </div> 
+            </div>
+            <div class="prompt">
+                <span class="prompt-symbol">❯</span>
+                <span class="waiting">_</span>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const commandGroups = document.querySelectorAll('.command-group');
+            let currentGroup = 0;
+
+            function showNextCommand() {
+                if (currentGroup >= commandGroups.length) return;
+                
+                const group = commandGroups[currentGroup];
+                group.classList.remove('hidden');
+                
+                const typingElement = group.querySelector('.typing');
+                const output = group.querySelector('.output');
+
+                // Show output after typing animation
+                typingElement.addEventListener('animationend', () => {
+                    output.classList.remove('hidden');
+                    currentGroup++;
+                    setTimeout(showNextCommand, 500);
+                }, { once: true });
+            }
+
+            showNextCommand();
+        });
+    </script>
+</body>
+</html>

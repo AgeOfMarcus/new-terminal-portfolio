@@ -4,135 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>repl.email - marcusj.org</title>
-    <!--style>
-        :root {
-            --window-bg: #1a1a1a;
-            --tab-bg: #2d2d2d;
-            --tab-active: #333333;
-            --border-color: #444444;
-            --text-color: #ffffff;
-            --name-color: #7211bc;
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            background-color: #2b2b2b;
-            height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        }
-
-        .terminal-window {
-            width: 90%;
-            height: 80vh;
-            background-color: var(--window-bg);
-            border: 1px solid var(--border-color);
-            border-radius: 6px;
-            overflow: hidden;
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
-        }
-
-        .tab-bar {
-            display: flex;
-            background-color: var(--tab-bg);
-            padding: 8px 8px 0 8px;
-            border-bottom: 1px solid var(--border-color);
-            overflow-x: auto;
-            white-space: nowrap;
-            -webkit-overflow-scrolling: touch;
-        }
-
-        .tab {
-            padding: 8px 16px;
-            background-color: var(--tab-bg);
-            color: var(--text-color);
-            border-radius: 6px 6px 0 0;
-            border: 1px solid var(--border-color);
-            border-bottom: none;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            margin-right: 4px;
-            text-decoration: none;
-            flex-shrink: 0;
-        }
-
-        .tab.active {
-            background-color: var(--tab-active);
-        }
-
-        .terminal-content {
-            padding: 16px;
-            color: var(--text-color);
-            height: calc(100% - 45px);
-            overflow-y: auto;
-        }
-
-        .prompt {
-            display: flex;
-            gap: 8px;
-            align-items: center;
-        }
-
-        .prompt-symbol {
-            color: #0f0;
-        }
-
-        .hidden {
-            display: none;
-        }
-
-        .typing {
-            border-right: 2px solid var(--text-color);
-            white-space: nowrap;
-            overflow: hidden;
-            width: 0;
-            animation: typing 1s steps(30, end) forwards;
-        }
-
-        .waiting {
-            animation: blink 1s step-end infinite;
-        }
-
-        @keyframes typing {
-            from { width: 0 }
-            to { width: 100% }
-        }
-
-        @keyframes blink {
-            from, to { border-color: transparent }
-            50% { border-color: var(--text-color); }
-        }
-
-        .output {
-            margin: 10px 0;
-            line-height: 1.5;
-        }
-
-        .output img {
-            max-width: 100%;
-            margin: 10px 0;
-            border-radius: 4px;
-            border: 1px solid var(--border-color);
-        }
-
-        .output a {
-            color: #58a6ff;
-            text-decoration: none;
-        }
-
-        .output a:hover {
-            text-decoration: underline;
-        }
-    </style-->
     <link rel="stylesheet" href="static/styles.css">
 </head>
 <body>
@@ -142,17 +13,21 @@
                 <span>🖥️</span>
                 <span>marcusj.org</span>
             </a>
-            <a href="hello-world.html" class="tab">
-                <span>📝</span>
-                <span>hello-world</span>
+            <a href="ticket-system.html" class="tab">
+                <span>🎟️</span>
+                <span>ts4j</span>
+            </a>
+            <a href="repl-email.html" class="tab active">
+                <span>📧</span>
+                <span>repl.email</span>
             </a>
             <a href="i-marcusj-org.html" class="tab">
                 <span>🖼️</span>
                 <span>i.marcusj.org</span>
             </a>
-            <a href="repl-email.html" class="tab active">
-                <span>📧</span>
-                <span>repl.email</span>
+            <a href="hello-world.html" class="tab">
+                <span>📝</span>
+                <span>hello-world</span>
             </a>
         </div>
         <div class="terminal-content">
